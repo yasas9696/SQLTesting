@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmployeeListningActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10sp">
+
+        <TextView
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+
+            android:text="@string/cfims"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10sp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:paddingTop="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.25"
+
+            android:text="@string/candy" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10sp">
+        <TextView
+            android:layout_width="0dp"
+            android:paddingTop="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.25"
+
+            android:text="@string/management" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/fname"
+        android:layout_width="145dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="141dp"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="end"
+        android:inputType="textPersonName"
+        android:text="FName"
+        android:textAlignment="textEnd"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/lname"
+        android:layout_width="197dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginRight="29dp"
+        android:layout_toEndOf="@+id/fname"
+        android:layout_toRightOf="@+id/fname"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="start"
+        android:inputType="textPersonName"
+        android:text="LName"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/empno"
+        android:layout_width="252dp"
+        android:layout_height="68dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="202dp"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="EMPNO"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/dept"
+        android:layout_width="253dp"
+        android:layout_height="59dp"
+        android:textSize="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginRight="99dp"
+        android:gravity="center"
+        android:background="@null"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="DEPARTMENT" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.25"
+
+        android:text="@string/management" />
+</RelativeLayout>

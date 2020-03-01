@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">CFI MANAGEMENT SYSTEM</string>
+    <string name="view_all">Check all available items from here</string>
+    <string name="add_new">Add New Item to system from here .....</string>
+    <string name="title_activity_movie_update_delete">ItemUpdateDeleteActivity</string>
+
+    <string name="movieName">Item Name  :</string>
+    <string name="genre">Model  :</string>
+    <string name="year">QR  :</string>
+    <string name="rating">Availability :</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="Scan">Scan QR from here </string>
+    <string name="profile">check Profile details from one click</string>
+    <string name="history">Check your checkout history from here</string>
+    <string name="logout">Logout</string>
+    <string name="cart">check Cart for your selected items</string>
+    <string name="capacity">Capacity   :</string>
+    <string name="type">Type   :</string>
+
+
+    <string name="purpose">Job Number :</string>
+    <string name="event">Event Name :</string>
+    <string name="dept">Department  :</string>
+    <string name="checkout">Checkout</string>
+    <string name="jobnumber">Job Number :</string>
+    <string name="date">Date   :</string>
+    <string name="empno">Employee :</string>
+    <string name="title_qrcodescanner">Module Title</string>
+
+    <string name="CLICK">CLICK TO SCAN</string>
+    <string name="login">Login</string>
+
+    <string name="cfims">CFIMS</string>
+    <string name="candy">Candy Factory Inventory</string>
+    <string name="management">Management System</string>
+
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="hint_email">Email</string>
+
+
+    <string name="hint_name">Name</string>
+    <string name="hint_dept">Department</string>
+    <string name="hint_type">Type</string>
+
+
+
+</resources>
