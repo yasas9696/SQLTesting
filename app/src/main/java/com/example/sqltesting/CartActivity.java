@@ -21,11 +21,14 @@ import android.widget.Toast;
 
 import com.example.sqltesting.helper.CheckNetworkStatus;
 import com.example.sqltesting.helper.HttpJsonParser;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +38,8 @@ public class CartActivity extends AppCompatActivity {
     private static final String KEY_DATA = "data";
     private static final String KEY_MOVIE_ID = "cartID";
     private static final String KEY_MOVIE_NAME = "itemName";
+    private final String KEY_CART_ITEM_ID = "cartItemID";
+    private final String KEY_CART_ITEM_NAME =  "cartItemName";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
     private ArrayList<HashMap<String, String>> itemList;
     private ListView itemListView;
@@ -58,7 +63,6 @@ public class CartActivity extends AppCompatActivity {
 
 
 
-
     }
 
 
@@ -79,29 +83,20 @@ public class CartActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            HttpJsonParser httpJsonParser = new HttpJsonParser();
-            JSONObject jsonObject = httpJsonParser.makeHttpRequest(
-                    BASE_URL + "fetch_all_carts.php", "GET", null);
-            try {
-                int success = jsonObject.getInt(KEY_SUCCESS);
-                JSONArray movies;
-                if (success == 1) {
-                    itemList = new ArrayList<>();
-                    movies = jsonObject.getJSONArray(KEY_DATA);
-                    //Iterate through the response and populate movies list
-                    for (int i = 0; i < movies.length(); i++) {
-                        JSONObject movie = movies.getJSONObject(i);
-                        Integer movieId = movie.getInt(KEY_MOVIE_ID);
-                        String movieName = movie.getString(KEY_MOVIE_NAME);
-                        HashMap<String, String> map = new HashMap<String, String>();
-                        map.put(KEY_MOVIE_ID, movieId.toString());
-                        map.put(KEY_MOVIE_NAME, movieName);
-                        itemList.add(map);
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+
+            itemList = new ArrayList<>();
+
+            SharedPreferences sharedPreferences = getSharedPreferences("sp", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            String cartList = sharedPreferences.getString("CartList", null);
+
+            Gson gson = new Gson();
+
+            Type type = new TypeToken<ArrayList<HashMap<String, String>>>() {}.getType();
+            itemList = gson.fromJson(cartList, type);
+
+
             return null;
         }
 
@@ -119,17 +114,11 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
     private void populateMovieList() {
         ListAdapter adapter = new SimpleAdapter(
                 CartActivity.this, itemList,
-                R.layout.list_item_cart, new String[]{KEY_MOVIE_ID,
-                KEY_MOVIE_NAME},
+                R.layout.list_item_cart, new String[]{KEY_CART_ITEM_ID,
+                KEY_CART_ITEM_NAME},
                 new int[]{R.id.movieId, R.id.movieName});
         itemListView.setAdapter(adapter);
 
@@ -142,7 +131,7 @@ public class CartActivity extends AppCompatActivity {
                     String movieId = ((TextView) view.findViewById(R.id.movieId))
                             .getText().toString();
                     Intent intent = new Intent(getApplicationContext(),
-                           RmoveCartItemActivity.class);
+                            RmoveCartItemActivity.class);
                     intent.putExtra(KEY_MOVIE_ID, movieId);
                     startActivityForResult(intent, 20);
 

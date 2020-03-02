@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MovieUpdateDeleteActivity extends AppCompatActivity {
+
     private static String STRING_EMPTY = "";
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
@@ -398,10 +399,16 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
 
                         Gson gson = new Gson();
 
-                        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-                        ArrayList<String> currentCartList = gson.fromJson(cartList, type);
+                        Type type = new TypeToken<ArrayList<HashMap<String, String>>>() {}.getType();
+                        ArrayList<HashMap<String, String>> currentCartList = gson.fromJson(cartList, type);
 
-                        currentCartList.add(itemId);
+                        //Create a new hashmap which includes itemID and itemName
+                        HashMap<String, String> thisItem = new HashMap<String, String>();
+
+                        thisItem.put("cartItemID", itemId);
+                        thisItem.put("cartItemName", itemName);
+
+                        currentCartList.add(thisItem);
 
                         String json = gson.toJson(currentCartList);
 

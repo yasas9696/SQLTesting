@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class pop extends AppCompatActivity {
 
@@ -45,10 +46,10 @@ public class pop extends AppCompatActivity {
 
         if(cartList == null){
 
-            ArrayList<String> initialArrayList = new ArrayList<String>();
+            ArrayList<HashMap<String, String>> initialHashMap = new ArrayList<HashMap<String, String>>();
             Gson gson = new Gson();
 
-            String json = gson.toJson(initialArrayList);
+            String json = gson.toJson(initialHashMap);
 
             editor.putString("CartList", json);
 
@@ -60,8 +61,8 @@ public class pop extends AppCompatActivity {
 
             Gson gson = new Gson();
 
-            Type type = new TypeToken<ArrayList<String>>() {}.getType();
-            ArrayList<String> currentList = gson.fromJson(cartList, type);
+            Type type = new TypeToken<ArrayList<HashMap<String, String>>>() {}.getType();
+            ArrayList<HashMap<String, String>> currentList = gson.fromJson(cartList, type);
 
             currentList.clear();
 
@@ -71,7 +72,7 @@ public class pop extends AppCompatActivity {
 
             editor.apply();
 
-            Toast.makeText(this, "Cart Cleared Successfully", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Welcome to the CFIMS", Toast.LENGTH_LONG).show();
 
         }
 

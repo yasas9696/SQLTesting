@@ -71,12 +71,13 @@ android:textColor="@color/gray"
             android:gravity="center"
             android:textColor="@color/gray"
             android:maxLines="1"
-            android:hint="Enter Text Here" />
+            android:hint="Enter Text Here"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/button"
             android:layout_width="fill_parent"
-
+android:visibility="gone"
             android:layout_height="50dp"
             android:layout_below="@+id/editText"
             android:text="Click Here TO generate qr code"
@@ -90,10 +91,11 @@ android:textColor="@color/gray"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/editText"
+            android:layout_marginTop="50dp"
             android:background="@drawable/homebuttons"
-            android:textColor="@color/white"
             android:text="Scan Your QR Code"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
 
@@ -119,6 +121,7 @@ android:textColor="@color/gray"
             android:layout_height="50dp"
             android:text="CHECKOUT"
             android:textColor="@color/white"
+            android:visibility="gone"
             android:background="@drawable/homebuttons"/>
 
         <EditText

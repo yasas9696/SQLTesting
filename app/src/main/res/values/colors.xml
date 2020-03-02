@@ -8,7 +8,7 @@
     <color name="white">#eee</color>
     <color name="col">#00CE1313</color>
     <color name="gray">#43464b</color>
-
+<color name="green">#3BFA05</color>
     <color name="QRCodeWhiteColor">#ffffff</color>
 
     <color name="QRCodeBlackColor">#000000</color>
