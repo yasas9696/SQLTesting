@@ -54,7 +54,17 @@ public class Profilee extends AppCompatActivity {
             public void onClick(View v) {
                 userSession.setLoggedin(false);
                 userInfo.clearUserInfo();
-                startActivity(new Intent(Profilee.this, Login.class));
+//                startActivity(new Intent(Profilee.this, Login.class));
+//                finish();
+
+
+
+                Intent intent = new Intent(Profilee.this, Login.class);
+                intent.putExtra("finish", true); // if you are checking for this in your other Activities
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 finish();
             }
         });

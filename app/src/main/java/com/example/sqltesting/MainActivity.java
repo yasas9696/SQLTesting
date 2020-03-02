@@ -2,6 +2,7 @@ package com.example.sqltesting;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import prefs.UserSession;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -16,14 +17,13 @@ import android.widget.Toast;
 import com.example.sqltesting.helper.CheckNetworkStatus;
 
 public class MainActivity extends AppCompatActivity {
-
+    private UserSession userSession;
     public static final int CAMERA_REQUEST = 9999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
 

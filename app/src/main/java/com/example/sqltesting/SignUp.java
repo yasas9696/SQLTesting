@@ -31,6 +31,7 @@ public class SignUp extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private UserSession session;
     private UserInfo userInfo;
+    private static String STRING_EMPTY = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +53,24 @@ public class SignUp extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uName = username.getText().toString().trim();
-                String mail  = email.getText().toString().trim();
-                String pass  = password.getText().toString().trim();
-                String nam = name.getText().toString().trim();
-                String dep = dept.getText().toString().trim();
-                String typ = type.getText().toString().trim();
 
-                signup(uName, mail, pass, nam, dep, typ);
+                if (!STRING_EMPTY.equals(username.getText().toString()) &&
+                        !STRING_EMPTY.equals(email.getText().toString()) &&
+                        !STRING_EMPTY.equals(password.getText().toString()) &&
+                        !STRING_EMPTY.equals(name.getText().toString())) {
+
+
+                    String uName = username.getText().toString().trim();
+                    String mail = email.getText().toString().trim();
+                    String pass = password.getText().toString().trim();
+                    String nam = name.getText().toString().trim();
+                    String dep = dept.getText().toString().trim();
+                    String typ = type.getText().toString().trim();
+
+                    signup(uName, mail, pass, nam, dep, typ);
+                }else{
+                    toast("Fields cannot be empty");
+                }
             }
         });
     }
