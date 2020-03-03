@@ -16,14 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profilee"></activity>
+        <activity android:name=".CheckoutList"></activity>
+        <activity android:name=".Profilee" />
         <activity android:name=".SignUp" />
         <activity android:name=".RmoveCartItemActivity" />
-<activity android:name=".Login" />
-
-
-
-
+        <activity android:name=".Login" />
         <activity android:name=".pop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +34,6 @@
         <activity android:name=".CartActivity" />
         <activity android:name=".EmployeeListningActivity" />
         <activity android:name=".MainActivity" />
-
         <activity android:name=".MovieListingActivity" />
         <activity android:name=".MovieUpdateDeleteActivity" />
         <activity android:name=".AddMovieActivity" />

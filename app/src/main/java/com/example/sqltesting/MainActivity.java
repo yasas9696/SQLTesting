@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button cart =(Button) findViewById(R.id.cart);
         Button profile = (Button) findViewById(R.id.profile);
         Button history = (Button) findViewById(R.id.hitory);
+        Button list = (Button)findViewById(R.id.list) ;
 //        Button logout = (Button) findViewById(R.id.logout);
 
 
@@ -46,6 +47,26 @@ public class MainActivity extends AppCompatActivity {
                 if (CheckNetworkStatus.isNetworkAvailable(getApplicationContext())) {
                     Intent i = new Intent(getApplicationContext(),
                             MovieListingActivity.class);
+                    startActivity(i);
+                } else {
+                    //Display error message if not connected to internet
+                    Toast.makeText(MainActivity.this,
+                            "Unable to connect to internet",
+                            Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+        });
+
+
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Check for network connectivity
+                if (CheckNetworkStatus.isNetworkAvailable(getApplicationContext())) {
+                    Intent i = new Intent(getApplicationContext(),
+                            CheckoutList.class);
                     startActivity(i);
                 } else {
                     //Display error message if not connected to internet
