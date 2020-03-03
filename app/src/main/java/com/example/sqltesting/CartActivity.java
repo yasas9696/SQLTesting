@@ -1,6 +1,8 @@
 package com.example.sqltesting;
 
 import androidx.appcompat.app.AppCompatActivity;
+import prefs.UserInfo;
+import prefs.UserSession;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -44,8 +47,19 @@ public class CartActivity extends AppCompatActivity {
     private ArrayList<HashMap<String, String>> itemList;
     private ListView itemListView;
     private Button deleteButton;
+    private Button checkoutAllButton = null;
     private String itemId;
     int success;
+    private TextView tvName;
+    private UserInfo userInfo;
+    private UserSession userSession;
+
+
+
+    private EditText jobnumber;
+    private EditText eventname;
+    private EditText department;
+    private TextView empname;
 
 
     private ProgressDialog pDialog;
@@ -55,14 +69,79 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+        jobnumber =(EditText)findViewById(R.id.txtJobNumber) ;
+        eventname = (EditText) findViewById(R.id.txtEventName);
+        department =(EditText)findViewById(R.id.txtDepartment) ;
+        empname = (TextView) findViewById(R.id.txtEmpName) ;
+
+
+
+
+
+        userInfo = new UserInfo(this);
+        userSession = new UserSession(this);
+
+        tvName = (TextView)findViewById(R.id.txtEmpName) ;
+
+        String name = userInfo.getKeyName();
+        tvName.setText(name);
+
+
         itemListView = (ListView) findViewById(R.id.itemlist);
         new FetchMoviesAsyncTask().execute();
 
         SharedPreferences sharedPreferences = getSharedPreferences("sp" , Context.MODE_PRIVATE);
         String s1 = sharedPreferences.getString("CartList",null);
 
+        checkoutAllButton = (Button) findViewById(R.id.checkoutAllButton);
+
+        checkoutAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                checkoutItems();
+
+            }
+        });
 
 
+
+    }
+
+    protected void checkoutItems(){
+
+        for (int i=0; i < itemList.size(); i++){
+
+            HashMap<String, String> currentItem = itemList.get(i);
+
+            String itemID1 = currentItem.get(KEY_CART_ITEM_ID);
+            String itemName1 = currentItem.get(KEY_CART_ITEM_NAME);
+
+
+            HttpJsonParser httpJsonParser = new HttpJsonParser();
+            Map<String, String> httpParams = new HashMap<>();
+            //Populating request parameters
+            httpParams.put(KEY_CART_ITEM_ID, itemID1);
+            httpParams.put(KEY_CART_ITEM_NAME, itemName1);
+
+            JSONObject jsonObject = httpJsonParser.makeHttpRequest(
+                    BASE_URL + "checkout_all_items.php", "POST", httpParams);
+            try {
+
+
+                success = jsonObject.getInt(KEY_SUCCESS);
+
+                if (success != 1){
+
+                    Toast.makeText(CartActivity.this, "Error occured while checking out items.", Toast.LENGTH_LONG).show();
+                    break;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Toast.makeText(CartActivity.this, "All items checked out successfully.", Toast.LENGTH_LONG).show();
     }
 
 

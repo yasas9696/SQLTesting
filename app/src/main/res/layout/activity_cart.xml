@@ -70,7 +70,7 @@
 
             <EditText
                 android:layout_width="0dp"
-                android:id="@+id/txtMovieNameAdd"
+                android:id="@+id/txtJobNumber"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:layout_weight="0.75"
@@ -91,7 +91,7 @@
 
             <EditText
                 android:layout_width="0dp"
-                android:id="@+id/txtGenreAdd"
+                android:id="@+id/txtEventName"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:layout_weight="0.75"
@@ -111,7 +111,29 @@
                 android:text="@string/dept" />
 
             <EditText
-                android:id="@+id/txtYearAdd"
+                android:id="@+id/txtDepartment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:maxLines="1"
+                android:ems="10" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="10sp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/empno" />
+
+            <TextView
+                android:id="@+id/txtEmpName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
@@ -122,7 +144,8 @@
         <ListView
             android:id="@+id/itemlist"
             android:layout_width="wrap_content"
-            android:layout_height="461dp">
+            android:layout_height="461dp"
+            android:paddingTop="5dp">
 
 
         </ListView>
@@ -142,12 +165,13 @@
                 android:layout_weight="0.50" />
 
             <Button
-                android:id="@+id/btnAdd"
-                android:layout_width="96dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/checkoutAllButton"
+                android:layout_width="79dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="40dp"
                 android:layout_weight="0.20"
                 android:background="@drawable/homebuttons"
+                android:paddingBottom="3dp"
                 android:text="@string/checkout"
                 android:textColor="@color/white" />
         </LinearLayout>

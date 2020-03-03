@@ -26,7 +26,7 @@
     <string name="checkout">Checkout</string>
     <string name="jobnumber">Job Number :</string>
     <string name="date">Date   :</string>
-    <string name="empno">Employee :</string>
+    <string name="empno">Employee   :</string>
     <string name="title_qrcodescanner">Module Title</string>
 
     <string name="CLICK">CLICK TO SCAN</string>

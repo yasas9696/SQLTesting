@@ -58,9 +58,10 @@
 
                     android:layout_marginEnd="6dp"
                     android:layout_marginRight="4dp"
-                    android:background="@drawable/homebuttons"
+                    android:background="@drawable/button"
 
-                    android:text="@string/view_all"
+
+
                     android:textColor="@color/white"
                     android:textFontWeight="bold"
                     android:textStyle="bold"
@@ -77,8 +78,8 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginLeft="4dp"
 
-                    android:background="@drawable/homebuttons"
-                    android:text="@string/history"
+                    android:background="@drawable/buttonn"
+
                     android:textColor="@color/white"
                     android:textFontWeight="100dp"
                     android:textStyle="bold" />

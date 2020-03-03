@@ -63,7 +63,7 @@ public class AddMovieActivity extends AppCompatActivity {
         capacityEditText=(EditText) findViewById(R.id.txtMovieCapacityAdd) ;
 
 
-        addButton = (Button) findViewById(R.id.btnAdd);
+        addButton = (Button) findViewById(R.id.checkoutAllButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
