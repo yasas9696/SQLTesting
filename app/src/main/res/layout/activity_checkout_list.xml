@@ -84,10 +84,14 @@
 
                 <EditText
                     android:id="@+id/search"
-                    android:layout_width="match_parent"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:hint="Search"
-                    android:textSize="14sp" />
+                    android:editable="false"
+                    android:text="Allready Checkedout Items"
+                    android:textAlignment="center"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold|italic" />
 
             </LinearLayout>
         </LinearLayout>

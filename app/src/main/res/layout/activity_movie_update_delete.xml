@@ -130,12 +130,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:paddingBottom="20dp"
                 android:background="@null"
                 android:editable="false"
                 android:ems="10"
+                android:paddingBottom="20dp"
 
-                />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,11 +158,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:paddingBottom="20dp"
                 android:background="@null"
                 android:editable="false"
                 android:ems="10"
-                />
+                android:paddingBottom="20dp"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -184,10 +184,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:paddingBottom="20dp"
                 android:background="@null"
                 android:editable="false"
-                android:ems="10" />
+                android:ems="10"
+                android:paddingBottom="20dp"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -207,10 +208,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:paddingBottom="20dp"
                 android:background="@null"
                 android:editable="false"
-                android:ems="10"/>
+                android:ems="10"
+                android:paddingBottom="20dp"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -233,12 +235,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:paddingBottom="20dp"
                 android:background="@null"
                 android:editable="false"
                 android:ems="10"
+                android:paddingBottom="20dp"
 
-                />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -261,12 +263,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:paddingBottom="20dp"
                 android:background="@null"
                 android:editable="false"
                 android:ems="10"
+                android:paddingBottom="20dp"
 
-                />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout

@@ -123,8 +123,6 @@ public class QrActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -137,6 +135,11 @@ public class QrActivity extends AppCompatActivity {
 
                 tv_qr_readTxt.setText(result.getContents());
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+
+
+
+
+
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment

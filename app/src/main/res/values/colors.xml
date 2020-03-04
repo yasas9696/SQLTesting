@@ -10,6 +10,7 @@
     <color name="gray">#43464b</color>
 <color name="green">#3BFA05</color>
     <color name="QRCodeWhiteColor">#ffffff</color>
+    <color name="pink">#FCCECE</color>
 
     <color name="QRCodeBlackColor">#000000</color>
 </resources>

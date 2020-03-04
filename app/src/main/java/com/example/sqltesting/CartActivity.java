@@ -41,8 +41,8 @@ public class CartActivity extends AppCompatActivity {
     private static final String KEY_DATA = "data";
     private static final String KEY_MOVIE_ID = "cartID";
     private static final String KEY_MOVIE_NAME = "itemName";
-    private final String KEY_CART_ITEM_ID = "cartItemID";
-    private final String KEY_CART_ITEM_NAME =  "cartItemName";
+    private static final String KEY_CART_ITEM_ID = "cartItemID";
+    private static final String KEY_CART_ITEM_NAME =  "cartItemName";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
     private ArrayList<HashMap<String, String>> itemList;
     private ListView itemListView;
@@ -59,7 +59,7 @@ public class CartActivity extends AppCompatActivity {
     private EditText jobnumber;
     private EditText eventname;
     private EditText department;
-    private TextView empname;
+    private EditText empname;
 
 
     private ProgressDialog pDialog;
@@ -72,7 +72,7 @@ public class CartActivity extends AppCompatActivity {
         jobnumber =(EditText)findViewById(R.id.txtJobNumber) ;
         eventname = (EditText) findViewById(R.id.txtEventName);
         department =(EditText)findViewById(R.id.txtDepartment) ;
-        empname = (TextView) findViewById(R.id.txtEmpName) ;
+        empname = (EditText) findViewById(R.id.txtEmpName) ;
 
 
 
@@ -81,7 +81,7 @@ public class CartActivity extends AppCompatActivity {
         userInfo = new UserInfo(this);
         userSession = new UserSession(this);
 
-        tvName = (TextView)findViewById(R.id.txtEmpName) ;
+        tvName = (EditText)findViewById(R.id.txtEmpName) ;
 
         String name = userInfo.getKeyName();
         tvName.setText(name);
@@ -130,6 +130,7 @@ public class CartActivity extends AppCompatActivity {
 
 
                 success = jsonObject.getInt(KEY_SUCCESS);
+                System.out.println(success);
 
                 if (success != 1){
 
@@ -142,6 +143,7 @@ public class CartActivity extends AppCompatActivity {
         }
 
         Toast.makeText(CartActivity.this, "All items checked out successfully.", Toast.LENGTH_LONG).show();
+
     }
 
 
@@ -188,8 +190,8 @@ public class CartActivity extends AppCompatActivity {
 
                 }
             });
-        }
 
+        }
     }
 
 
