@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/popup_bg"
-
     android:layout_height="match_parent"
     tools:context=".RmoveCartItemActivity">
 
@@ -36,7 +35,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/deleteItem"
+                android:id="@+id/close"
                 android:layout_width="50dp"
                 android:layout_height="51dp"
                 android:layout_gravity="right"
@@ -56,6 +55,7 @@
                 android:id="@+id/deleteButton"
                 android:layout_width="282dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
 
 
                 android:background="@drawable/homebuttons"

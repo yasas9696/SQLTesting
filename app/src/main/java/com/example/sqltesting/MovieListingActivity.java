@@ -33,6 +33,7 @@ public class MovieListingActivity extends AppCompatActivity {
     private static final String KEY_DATA = "data";
     private static final String KEY_MOVIE_ID = "item_id";
     private static final String KEY_MOVIE_NAME = "item_name";
+    private static final String KEY_MOVIE_IMAGE = "item_image";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
     private ArrayList<HashMap<String, String>> movieList;
     private ListView movieListView;
@@ -83,9 +84,11 @@ public class MovieListingActivity extends AppCompatActivity {
                         JSONObject movie = movies.getJSONObject(i);
                         Integer movieId = movie.getInt(KEY_MOVIE_ID);
                         String movieName = movie.getString(KEY_MOVIE_NAME);
+                        String movieImage = movie.getString(KEY_MOVIE_IMAGE);
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put(KEY_MOVIE_ID, movieId.toString());
                         map.put(KEY_MOVIE_NAME, movieName);
+                        map.put(KEY_MOVIE_IMAGE, movieImage);
                         movieList.add(map);
                     }
 
@@ -115,8 +118,8 @@ public class MovieListingActivity extends AppCompatActivity {
         ListAdapter adapter = new SimpleAdapter(
                 MovieListingActivity.this, movieList,
                 R.layout.list_item, new String[]{KEY_MOVIE_ID,
-                KEY_MOVIE_NAME},
-                new int[]{R.id.movieId, R.id.movieName});
+                KEY_MOVIE_NAME,KEY_MOVIE_IMAGE},
+                new int[]{R.id.movieId, R.id.movieName, R.id.movieImage});
 
 
 

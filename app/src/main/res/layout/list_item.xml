@@ -23,7 +23,7 @@
         android:textStyle="bold|italic" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/movieImage"
         android:layout_width="97dp"
         android:layout_height="82dp"
         android:layout_below="@+id/movieName"

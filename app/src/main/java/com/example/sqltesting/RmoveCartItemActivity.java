@@ -2,6 +2,7 @@ package com.example.sqltesting;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.sqltesting.helper.CheckNetworkStatus;
@@ -18,6 +20,7 @@ import com.example.sqltesting.helper.HttpJsonParser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Closeable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +29,7 @@ public class RmoveCartItemActivity extends AppCompatActivity {
     private int success;
     private ProgressDialog pDialog;
     private String itemId;
+    private ImageView clo;
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_MOVIE_ID = "cartID";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
@@ -36,6 +40,15 @@ public class RmoveCartItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rmove_cart_item);
         Intent intent = getIntent();
         itemId = intent.getStringExtra(KEY_MOVIE_ID);
+
+        clo = (ImageView) findViewById(R.id.close);
+        clo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
 
         deleteButton = (Button) findViewById(R.id.deleteButton);

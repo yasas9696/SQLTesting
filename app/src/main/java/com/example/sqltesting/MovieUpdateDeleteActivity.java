@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +29,8 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import java.io.InputStream;
 import java.lang.reflect.Type;
 
 import java.util.ArrayList;
@@ -45,10 +49,12 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
     private static final String KEY_QR = "item_qr";
     private static final String KEY_STATUS = "item_status";
     private static final String KEY_CAPACITY = "item_capacity";
+    private static final String KEY_IMAGE = "item_image";
 
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
     private String itemId;
     private EditText itemTypeEditText;
+    private ImageView movieImage;
 
     private EditText movieNameEditText;
     private EditText movieModelEditText;
@@ -63,6 +69,7 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
     private String itemQRFromCm;
     private String itemStatus;
     private String itemCapacity;
+    private String itemImage;
 
     private String itemType;
     private Button deleteButton;
@@ -71,6 +78,7 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
     private int success;
     private ProgressDialog pDialog;
     TextView tv_qr_readTxt;
+    Bitmap bitmap;
 
 
     @Override
@@ -78,6 +86,8 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_update_delete);
         Intent intent = getIntent();
+
+        movieImage = (ImageView) findViewById(R.id.image) ;
         itemTypeEditText = (EditText) findViewById(R.id.txtType);
         movieNameEditText = (EditText) findViewById(R.id.txtMovieNameUpdate);
         movieModelEditText = (EditText) findViewById(R.id.txtGenreUpdate);
@@ -107,7 +117,6 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
-
             }
         });
         updateButton = (Button) findViewById(R.id.btnUpdate);
@@ -163,7 +172,7 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
                     itemModel = movie.getString(KEY_MODEL);
                     itemQr = movie.getString(KEY_QR);
                     itemStatus = movie.getString(KEY_STATUS);
-
+                    itemImage  = movie.getString(KEY_IMAGE);
                     itemCapacity = movie.getString(KEY_CAPACITY);
 
 
@@ -188,6 +197,9 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
                     capacityEditText.setText(itemCapacity);
 
 
+                            new GetImageFromURL(movieImage);
+
+
 
 
                 }
@@ -196,6 +208,45 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
 
 
     }
+
+    public class GetImageFromURL extends AsyncTask<String,Void, Bitmap>{
+
+        ImageView imgView;
+        public GetImageFromURL(ImageView imgv)
+        {
+            this.imgView=imgv;
+        }
+
+
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String urldisplay=url[0];
+            bitmap=null;
+
+            try{
+                InputStream ist = new java.net.URL(urldisplay).openStream();
+                bitmap= BitmapFactory.decodeStream(ist);
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+            return bitmap;
+
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+            imgView.setImageBitmap(bitmap);
+        }
+    }
+
+
+
+
+
+
+
+
 
     /**
      * Displays an alert dialogue to confirm the deletion
@@ -390,7 +441,7 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
                 if(itemQr.equals(itemQRFromCm)){
 
                     try{
-                        Toast.makeText(this, "Item Available" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Item matched" , Toast.LENGTH_LONG).show();
 
                         SharedPreferences sharedPreferences = getSharedPreferences("sp", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();

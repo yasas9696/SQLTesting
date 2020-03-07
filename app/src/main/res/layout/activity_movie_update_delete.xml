@@ -83,13 +83,13 @@
 
 
             <ImageView
-                android:layout_width="97dp"
+                android:id="@+id/image"
 
+                android:layout_width="97dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:background="@drawable/cm"
-                />
+                android:gravity="center" />
         </LinearLayout>
 
         <LinearLayout

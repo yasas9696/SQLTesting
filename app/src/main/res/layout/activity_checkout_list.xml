@@ -47,7 +47,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.25"
 
-                    android:text="@string/candy" />
+                    android:text="@string/candy"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -63,7 +64,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.25"
 
-                    android:text="@string/management" />
+                    android:text="@string/management"
+                    android:textSize="12sp" />
 
             </LinearLayout>
             <LinearLayout

@@ -1,58 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
 
                 android:text="@string/cfims"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
-
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.25"
 
-                android:text="@string/candy" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+                android:text="@string/candy"
+                android:textSize="12sp" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.25"
 
-                android:text="@string/management" />
+                android:text="@string/management"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -69,12 +56,12 @@
                 android:text="@string/purpose" />
 
             <EditText
-                android:layout_width="0dp"
                 android:id="@+id/txtJobNumber"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:layout_weight="0.75"
-                android:ems="10" />
+                android:ems="10"
+                android:maxLines="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,12 +77,12 @@
                 android:text="@string/event" />
 
             <EditText
-                android:layout_width="0dp"
                 android:id="@+id/txtEventName"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
                 android:layout_weight="0.75"
-                android:ems="10" />
+                android:ems="10"
+                android:maxLines="2" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,8 +102,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:maxLines="1"
-                android:ems="10" />
+                android:ems="10"
+                android:maxLines="1" />
         </LinearLayout>
 
 
@@ -134,10 +121,10 @@
 
             <EditText
                 android:id="@+id/txtEmpName"
-                android:editable="false"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
+                android:editable="false"
                 android:ems="10"
                 android:maxLines="1" />
         </LinearLayout>
@@ -145,34 +132,26 @@
         <ListView
             android:id="@+id/itemlist"
             android:layout_width="wrap_content"
-            android:layout_height="461dp"
+            android:layout_height="wrap_content"
             android:paddingTop="5dp">
 
 
         </ListView>
 
 
-
-
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="right"
             android:orientation="horizontal">
 
 
-            <View
-                android:layout_width="102dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.50" />
-
             <Button
                 android:id="@+id/checkoutAllButton"
-                android:layout_width="79dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="40dp"
-                android:layout_weight="0.20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/homebuttons"
-                android:paddingBottom="3dp"
                 android:text="@string/checkout"
                 android:textColor="@color/white" />
         </LinearLayout>
