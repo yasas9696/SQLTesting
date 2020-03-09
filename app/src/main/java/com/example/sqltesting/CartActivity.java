@@ -1,14 +1,11 @@
 package com.example.sqltesting;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.ListViewAutoScrollHelper;
 import prefs.UserInfo;
 import prefs.UserSession;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -33,7 +30,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sqltesting.helper.CheckNetworkStatus;
-import com.example.sqltesting.helper.HttpJsonParser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -45,8 +41,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class CartActivity extends AppCompatActivity {
     private static final String KEY_SUCCESS = "success";
@@ -55,7 +49,6 @@ public class CartActivity extends AppCompatActivity {
     private static final String KEY_CART_ITEM_NAME =  "cartItemName";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
 
-    int success;
     private UserInfo userInfo;
     private UserSession userSession;
     private ArrayList<HashMap<String, String>> itemList;

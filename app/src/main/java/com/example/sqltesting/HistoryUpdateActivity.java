@@ -1,5 +1,4 @@
 package com.example.sqltesting;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -9,16 +8,23 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sqltesting.helper.CheckNetworkStatus;
 import com.example.sqltesting.helper.HttpJsonParser;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,11 +35,13 @@ public class HistoryUpdateActivity extends AppCompatActivity {
     private static final String KEY_HISTORY_ID = "historyID";
     private static final String KEY_DATE = "date";
     private static final String KEY_EVENT_NAME = "event";
-
+    private static final String KEY_MOVIE_ID = "item_id";
+    private static final String KEY_MOVIE_NAME = "item_name";
     private static final String KEY_JOB_NUMBER = "jobNumber";
     private static final String KEY_DEPARTMENT = "department";
     private static final String KEY_EMP_NUMBER = "empNo";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
+    private ArrayList<HashMap<String, String>> itemList;
     private String historyId;
     private EditText eventNameEditText;
     private EditText dateEditText;
@@ -49,50 +57,36 @@ public class HistoryUpdateActivity extends AppCompatActivity {
     private Button updateButton;
     private int success;
     private ProgressDialog pDialog;
+    private ListView movieListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_update);
         Intent intent =getIntent();
+        movieListView = (ListView) findViewById(R.id.historyItemList);
+
         eventNameEditText = (EditText) findViewById(R.id.txtevent);
         dateEditText = (EditText) findViewById(R.id.txtdate);
         jobnumberEditText = (EditText) findViewById(R.id.txtjobnumber);
         departmentEditText = (EditText) findViewById(R.id.txtdepartment);
-        empnoEditText = (EditText) findViewById(R.id.txtempno) ;
+        empnoEditText = (EditText) findViewById(R.id.txtempno);
 
 
         historyId = intent.getStringExtra(KEY_HISTORY_ID);
+
+
         new FetchHistoryDetailsAsyncTask().execute();
 
-        deleteButton = (Button) findViewById(R.id.btnDelete);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                confirmDelete();
-            }
-        });
-        updateButton = (Button) findViewById(R.id.btnUpdate);
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(CheckNetworkStatus.isNetworkAvailable(getApplicationContext())){
-                    updateHistory();
-                }
-                else{
-                    Toast.makeText(HistoryUpdateActivity.this , "Unable to connect to internet",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-
-
+        new FetchSingleItem().execute();
 
 
     }
+
+
     private class FetchHistoryDetailsAsyncTask extends AsyncTask<String,String,String>{
 
-                @Override
+        @Override
         protected void onPreExecute(){
             super.onPreExecute();
             pDialog = new ProgressDialog(HistoryUpdateActivity.this);
@@ -122,7 +116,6 @@ public class HistoryUpdateActivity extends AppCompatActivity {
 
                 }
 
-
             }
             catch (JSONException e){
                 e.printStackTrace();
@@ -146,173 +139,82 @@ public class HistoryUpdateActivity extends AppCompatActivity {
     }
 
 
-    private void confirmDelete() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                HistoryUpdateActivity.this);
-        alertDialogBuilder.setMessage("Are you sure, you want to delete this event?");
-        alertDialogBuilder.setPositiveButton("Delete",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        if (CheckNetworkStatus.isNetworkAvailable(getApplicationContext())) {
-                            //If the user confirms deletion, execute DeleteMovieAsyncTask
-                            new DeleteHistoryAsyncTask().execute();
-                        } else {
-                            Toast.makeText(HistoryUpdateActivity.this,
-                                    "Unable to connect to internet",
-                                    Toast.LENGTH_LONG).show();
 
-                        }
-                    }
-                });
+    private class FetchSingleItem extends AsyncTask<String,String,String>{
 
-        alertDialogBuilder.setNegativeButton("Cancel", null);
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
-    /**
-     * AsyncTask to delete a movie
-     */
-    private class DeleteHistoryAsyncTask extends AsyncTask<String, String, String> {
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //Display progress bar
-            pDialog = new ProgressDialog(HistoryUpdateActivity.this);
-            pDialog.setMessage("Deleting Event. Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
+        protected void onPreExecute(){
+
         }
 
         @Override
-        protected String doInBackground(String... params) {
-            HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
-            //Set movie_id parameter in request
-            httpParams.put(KEY_HISTORY_ID, historyId);
-            JSONObject jsonObject = httpJsonParser.makeHttpRequest(
-                    BASE_URL + "delete_history.php", "POST", httpParams);
+        protected String doInBackground(String... strings) {
+
+            HttpJsonParser httpJsonParser1 = new HttpJsonParser();
+            Map<String, String> httpParams1 = new HashMap<>();
+            httpParams1.put("history_id", historyId);
+
+            JSONObject jsonObject1 = httpJsonParser1.makeHttpRequest(
+                    BASE_URL + "get_event_item_list.php", "POST", httpParams1);
             try {
-                success = jsonObject.getInt(KEY_SUCCESS);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
 
-        protected void onPostExecute(String result) {
-            pDialog.dismiss();
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    if (success == 1) {
-                        //Display success message
-                        Toast.makeText(HistoryUpdateActivity.this,
-                                "Movie Deleted", Toast.LENGTH_LONG).show();
-                        Intent i = getIntent();
-                        //send result code 20 to notify about movie deletion
-                        setResult(20, i);
-                        finish();
+                int success1 = jsonObject1.getInt(KEY_SUCCESS);
 
-                    } else {
-                        Toast.makeText(HistoryUpdateActivity.this,
-                                "Some error occurred while deleting movie",
-                                Toast.LENGTH_LONG).show();
+                JSONArray currentItems = null;
+
+                if (success1 == 1) {
+
+                    itemList = new ArrayList<>();
+                    currentItems = jsonObject1.getJSONArray("data");
+
+                    for (int i = 0; i < currentItems.length(); i++) {
+
+                        JSONObject item = currentItems.getJSONObject(i);
+
+                        Integer itemID = item.getInt("item_id");
+                        String itemName = item.getString("item_name");
+
+                        HashMap<String, String> map1 = new HashMap<String, String>();
+
+                        map1.put(KEY_MOVIE_ID, itemID.toString());
+                        map1.put(KEY_MOVIE_NAME, itemName.toString());
+
+                        itemList.add(map1);
 
                     }
                 }
-            });
-        }
-    }
-
-    /**
-     * Checks whether all files are filled. If so then calls UpdateMovieAsyncTask.
-     * Otherwise displays Toast message informing one or more fields left empty
-     */
-    private void updateHistory() {
-
-
-        if (!STRING_EMPTY.equals(eventNameEditText.getText().toString()) &&
-                !STRING_EMPTY.equals(dateEditText.getText().toString()) &&
-                !STRING_EMPTY.equals(jobnumberEditText.getText().toString()) &&
-                !STRING_EMPTY.equals(departmentEditText.getText().toString()) &&
-                !STRING_EMPTY.equals(empnoEditText.getText().toString())) {
-
-            eventName = eventNameEditText.getText().toString();
-            date = dateEditText.getText().toString();
-            jobNumber = jobnumberEditText.getText().toString();
-            department = departmentEditText.getText().toString();
-            new UpdateHistoryAsyncTask().execute();
-        } else {
-            Toast.makeText(HistoryUpdateActivity.this,
-                    "One or more fields left empty!",
-                    Toast.LENGTH_LONG).show();
-
-        }
-
-
-    }
-    /**
-     * AsyncTask for updating a movie details
-     */
-
-    private class UpdateHistoryAsyncTask extends AsyncTask<String, String, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //Display progress bar
-            pDialog = new ProgressDialog(HistoryUpdateActivity.this);
-            pDialog.setMessage("Updating event. Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            HttpJsonParser httpJsonParser = new HttpJsonParser();
-            Map<String, String> httpParams = new HashMap<>();
-            //Populating request parameters
-            httpParams.put(KEY_HISTORY_ID, historyId);
-            httpParams.put(KEY_EVENT_NAME, eventName);
-            httpParams.put(KEY_DATE, date);
-            httpParams.put(KEY_DEPARTMENT,department);
-            httpParams.put(KEY_JOB_NUMBER, jobNumber);
-            httpParams.put(KEY_EMP_NUMBER,empno);
-            JSONObject jsonObject = httpJsonParser.makeHttpRequest(
-                    BASE_URL + "update_history.php", "POST", httpParams);
-            try {
-                success = jsonObject.getInt(KEY_SUCCESS);
-            } catch (JSONException e) {
+            }
+            catch(JSONException e){
                 e.printStackTrace();
             }
+
             return null;
         }
 
-        protected void onPostExecute(String result) {
+
+        protected void onPostExecute(String result){
             pDialog.dismiss();
             runOnUiThread(new Runnable() {
                 public void run() {
-                    if (success == 1) {
-                        //Display success message
-                        Toast.makeText(HistoryUpdateActivity.this,
-                                "event Updated", Toast.LENGTH_LONG).show();
-                        Intent i = getIntent();
-                        //send result code 20 to notify about movie update
-                        setResult(20, i);
-                        finish();
-
-                    } else {
-                        Toast.makeText(HistoryUpdateActivity.this,
-                                "Some error occurred while updating movie",
-                                Toast.LENGTH_LONG).show();
-
-                    }
+                    populateMovieList();
                 }
             });
         }
+
     }
+
+
+    private void populateMovieList() {
+        ListAdapter adapter = new SimpleAdapter(
+                HistoryUpdateActivity.this, itemList,
+                R.layout.list_item, new String[]{KEY_MOVIE_ID,
+                KEY_MOVIE_NAME},
+                new int[]{R.id.movieId, R.id.movieName});
+
+        movieListView.setAdapter(adapter);
+
+
+    }
+
+
 }
-

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -22,11 +21,7 @@ public class pop extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop);
-//        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-//            finish();
-//            startActivity(new Intent(this, MainActivity.class));
-//            return;
-//        }
+
 
         findViewById(R.id.sign).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,15 +70,6 @@ public class pop extends AppCompatActivity {
             Toast.makeText(this, "Welcome to the CFIMS", Toast.LENGTH_LONG).show();
 
         }
-
-//        Button mButton =(Button) findViewById(R.id.sign);
-//        mButton.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(pop.this, MainActivity.class));
-//            }
-//        });
     }
 
 

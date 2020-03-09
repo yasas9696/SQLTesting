@@ -48,9 +48,6 @@ public class QrActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 if(!editText.getText().toString().isEmpty()){
                     EditTextValue = editText.getText().toString();
 
@@ -70,9 +67,6 @@ public class QrActivity extends AppCompatActivity {
 
             }
         });
-
-
-
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,11 +129,6 @@ public class QrActivity extends AppCompatActivity {
 
                 tv_qr_readTxt.setText(result.getContents());
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-
-
-
-
-
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment

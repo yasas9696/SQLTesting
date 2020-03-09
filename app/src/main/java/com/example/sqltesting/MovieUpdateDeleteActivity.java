@@ -198,10 +198,6 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
 
 
                             new GetImageFromURL(movieImage);
-
-
-
-
                 }
             });
         }

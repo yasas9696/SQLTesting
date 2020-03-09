@@ -54,8 +54,6 @@ public class Profilee extends AppCompatActivity {
             public void onClick(View v) {
                 userSession.setLoggedin(false);
                 userInfo.clearUserInfo();
-//                startActivity(new Intent(Profilee.this, Login.class));
-//                finish();
 
 
 

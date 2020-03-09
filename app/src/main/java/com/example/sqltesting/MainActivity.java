@@ -1,19 +1,13 @@
 package com.example.sqltesting;
 
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import prefs.UserSession;
-
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.sqltesting.helper.CheckNetworkStatus;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         Button viewAllBtn = (Button) findViewById(R.id.viewAllBtn);
         Button addNewBtn = (Button) findViewById(R.id.addNewBtn);
         Button qr = (Button) findViewById(R.id.Qr);
@@ -35,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button profile = (Button) findViewById(R.id.profile);
         Button history = (Button) findViewById(R.id.hitory);
         Button list = (Button)findViewById(R.id.list) ;
-//        Button logout = (Button) findViewById(R.id.logout);
+
 
 
         /*implementing the buttons click events*/
@@ -137,16 +128,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-/*camera open activity*/
-//    public void OpenCamera(View view){
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE
-//        );
-//        startActivityForResult(intent,CAMERA_REQUEST);
-//    }
-
 }

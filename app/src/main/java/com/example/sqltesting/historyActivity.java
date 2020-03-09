@@ -95,7 +95,7 @@ public class historyActivity extends AppCompatActivity {
 
     private  void populateHistoryList(){
         ListAdapter adapter = new SimpleAdapter(
-                historyActivity.this,historyList,R.layout.list_item,new String[]{
+                historyActivity.this,historyList,R.layout.list_item_image,new String[]{
                         KEY_MOVIE_ID,KEY_MOVIE_NAME},new int[]{R.id.movieId,R.id.movieName});
         historyListView.setAdapter(adapter);
         historyListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
