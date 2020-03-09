@@ -1,5 +1,6 @@
 package com.example.sqltesting;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import prefs.UserInfo;
 import prefs.UserSession;
@@ -206,11 +207,11 @@ public class CartActivity extends AppCompatActivity {
 
     private void populateMovieList() {
         ListAdapter adapter = new SimpleAdapter(
-            CartActivity.this,
-            itemList,
-            R.layout.list_item_cart,
-            new String[]{KEY_CART_ITEM_ID, KEY_CART_ITEM_NAME},
-            new int[]{R.id.movieId, R.id.movieName}
+                CartActivity.this,
+                itemList,
+                R.layout.list_item_cart,
+                new String[]{KEY_CART_ITEM_ID, KEY_CART_ITEM_NAME},
+                new int[]{R.id.movieId, R.id.movieName}
         );
 
         itemListView.setAdapter(adapter);

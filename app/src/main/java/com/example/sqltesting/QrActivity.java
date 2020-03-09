@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +14,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sqltesting.helper.HttpJsonParser;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class QrActivity extends AppCompatActivity {
@@ -28,7 +38,9 @@ public class QrActivity extends AppCompatActivity {
     EditText editText;
     String EditTextValue ;
     Thread thread ;
+    private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
     public final static int QRcodeWidth = 350 ;
+    private String itemQRCode = null;
     Bitmap bitmap ;
 
     TextView tv_qr_readTxt;
@@ -119,6 +131,7 @@ public class QrActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
@@ -127,12 +140,72 @@ public class QrActivity extends AppCompatActivity {
             } else {
                 Log.e("Scan", "Scanned");
 
-                tv_qr_readTxt.setText(result.getContents());
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                itemQRCode = result.getContents();
+                Toast.makeText(this, "Scan Successfull" , Toast.LENGTH_SHORT).show();
+
+                new GetItemNameClass().execute();
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private class GetItemNameClass extends AsyncTask<String,String,String> {
+
+        private String itemNameForThis = null;
+
+
+        @Override
+        protected void onPreExecute(){
+
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            HttpJsonParser httpJsonParser1 = new HttpJsonParser();
+            Map<String, String> httpParams1 = new HashMap<>();
+            httpParams1.put("qr_code", itemQRCode);
+
+            JSONObject jsonObject1 = httpJsonParser1.makeHttpRequest(
+                    BASE_URL + "get_item_name_by_qr.php", "POST", httpParams1);
+            try{
+
+                int success1 = jsonObject1.getInt("success");
+
+                JSONObject currentItem;
+
+
+                if(success1 == 1){
+
+                    currentItem = jsonObject1.getJSONObject("data");
+                    itemNameForThis = currentItem.getString("item_Name");
+
+                }
+
+            }
+            catch (JSONException e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+
+        protected void onPostExecute(String result){
+
+            runOnUiThread(new Runnable() {
+                public void run() {
+
+                    Intent intent = new Intent(getApplicationContext(),CheckoutPopup.class
+                    );
+                    intent.putExtra("itemName",itemNameForThis);
+                    intent.putExtra("itemQR", itemQRCode);
+                    startActivityForResult(intent,20);
+                }
+            });
+        }
+
     }
 }
