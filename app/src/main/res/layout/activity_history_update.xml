@@ -1,240 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:padding="10dp"
     tools:context=".HistoryUpdateActivity">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-
-                android:text="@string/cfims"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
-
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.25"
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-                android:text="@string/candy" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+                    android:text="@string/cfims"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="0dp"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.25"
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-                android:text="@string/management" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.25"
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+                    android:text="@string/candy" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
+            </LinearLayout>
 
-
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
-
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="@string/event"
-                />
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-            <EditText
-                android:id="@+id/txtevent"
-                android:layout_width="0dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.25"
+
+                    android:text="@string/management" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:background="@null"
-                android:ems="10"
-                android:paddingBottom="20dp"
-                android:textSize="12sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
 
-            <TextView
-                android:layout_width="0dp"
+
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="@string/date"
-                />
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-            <EditText
-                android:id="@+id/txtdate"
-                android:layout_width="0dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="@string/event" />
+
+                <EditText
+                    android:id="@+id/txtevent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:background="@null"
+                    android:ems="10"
+                    android:editable="false"
+                    android:paddingBottom="20dp"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:background="@null"
-                android:editable="false"
-                android:ems="10"
-                android:paddingBottom="20dp"
-                android:textSize="12sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="@string/date" />
 
-            <TextView
-                android:layout_width="0dp"
+                <EditText
+                    android:id="@+id/txtdate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:background="@null"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingBottom="20dp"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="@string/jobnumber" />
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-            <EditText
-                android:id="@+id/txtjobnumber"
-                android:layout_width="0dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="@string/jobnumber" />
+
+                <EditText
+                    android:id="@+id/txtjobnumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:background="@null"
+                    android:editable="false"
+                    android:ems="10"
+
+                    android:paddingBottom="20dp"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:background="@null"
-                android:editable="false"
-                android:ems="10"
-
-                android:paddingBottom="20dp"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
 
-            <TextView
-                android:layout_width="0dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="0.25"
+
+                    android:text="@string/dept" />
+
+                <EditText
+                    android:id="@+id/txtdepartment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:background="@null"
+                    android:ems="10"
+                    android:paddingBottom="20dp"
+                    android:editable="false"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
-                android:layout_weight="0.25"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
 
-                android:text="@string/dept" />
-
-            <EditText
-                android:id="@+id/txtdepartment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:background="@null"
-                android:ems="10"
-                android:paddingBottom="20dp"
-
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10sp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.25"
-
-                android:text="@string/empno" />
+                    android:text="@string/empno" />
 
 
-            <EditText
-                android:id="@+id/txtempno"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:background="@null"
-                android:editable="false"
-                android:ems="10"
-                android:paddingBottom="20dp"
+                <EditText
+                    android:id="@+id/txtempno"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:background="@null"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingBottom="20dp"
 
-                android:textSize="12sp" />
-        </LinearLayout>
-
-
+                    android:textSize="12sp" />
+            </LinearLayout>
 
 
             <Button
                 android:id="@+id/btnUpdate"
                 android:layout_width="wrap_content"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.50"
-                android:text="@string/update" />
+                android:text="@string/update"
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_weight="0.50"
+                android:text="@string/delete"
 
-                android:text="@string/delete" />
-
-        <ListView
-            android:id="@+id/historyItemList"
-            android:layout_width="wrap_content"
-            android:layout_height="489dp"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="5dp">
-
-        </ListView>
+                android:visibility="gone" />
 
 
+            <ListView
+                android:id="@+id/historyItemList"
+                android:layout_width="wrap_content"
+                android:layout_height="321dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="5dp">
 
+            </ListView>
+
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
 

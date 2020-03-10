@@ -29,10 +29,8 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import java.io.InputStream;
+import com.squareup.picasso.Picasso;
 import java.lang.reflect.Type;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +61,7 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
     private EditText capacityEditText;
 
 
+
     private String itemName;
     private String itemModel;
     private String itemQr;
@@ -78,7 +77,7 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
     private int success;
     private ProgressDialog pDialog;
     TextView tv_qr_readTxt;
-    Bitmap bitmap;
+
 
 
     @Override
@@ -177,6 +176,8 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
 
 
 
+
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -197,50 +198,17 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
                     capacityEditText.setText(itemCapacity);
 
 
-                            new GetImageFromURL(movieImage);
+
+                    String url = "https://lh3.googleusercontent.com/proxy/qUKduZIr1aCIkUSv4Jx8PLAUl9i15eAJ2XF70jd4qih0eIr-tVVmj3X-c47RxTDXvUcRADiOCDoOLKIjfrDxGhuNxL196S9dA5vDIn1DaJAKOfmvx5WbF0WTofbb7xRhU4W0tjRR";
+                    Picasso.get().load(url).into(movieImage);
+
+
                 }
             });
         }
 
 
     }
-
-    public class GetImageFromURL extends AsyncTask<String,Void, Bitmap>{
-
-        ImageView imgView;
-        public GetImageFromURL(ImageView imgv)
-        {
-            this.imgView=imgv;
-        }
-
-
-        @Override
-        protected Bitmap doInBackground(String... url) {
-            String urldisplay=url[0];
-            bitmap=null;
-
-            try{
-                InputStream ist = new java.net.URL(urldisplay).openStream();
-                bitmap= BitmapFactory.decodeStream(ist);
-            }
-            catch (Exception ex){
-                ex.printStackTrace();
-            }
-            return bitmap;
-
-        }
-        @Override
-        protected void onPostExecute(Bitmap bitmap){
-            super.onPostExecute(bitmap);
-            imgView.setImageBitmap(bitmap);
-        }
-    }
-
-
-
-
-
-
 
 
 
