@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -27,6 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MovieListingActivity extends AppCompatActivity {
     private static final String KEY_SUCCESS = "success";
@@ -39,6 +41,7 @@ public class MovieListingActivity extends AppCompatActivity {
     private ListView movieListView;
     private ProgressDialog pDialog;
     EditText editText;
+    Button searchbtn;
 
 
 
@@ -48,7 +51,24 @@ public class MovieListingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_listing);
         movieListView = (ListView) findViewById(R.id.movieList);
         editText =(EditText)findViewById(R.id.search) ;
+        searchbtn = (Button) findViewById(R.id.searchbtn);
+
+        searchbtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    String searchKey =  editText.getText().toString();
+                        new SearchItemActivity(searchKey).execute();
+                    }
+                }
+        );
+
+
+
+
         new FetchMoviesAsyncTask().execute();
+
 
 
     }
@@ -73,6 +93,73 @@ public class MovieListingActivity extends AppCompatActivity {
             HttpJsonParser httpJsonParser = new HttpJsonParser();
             JSONObject jsonObject = httpJsonParser.makeHttpRequest(
                     BASE_URL + "fetch_all_movies.php", "GET", null);
+            try {
+                int success = jsonObject.getInt(KEY_SUCCESS);
+                JSONArray movies;
+                if (success == 1) {
+                    movieList = new ArrayList<>();
+                    movies = jsonObject.getJSONArray(KEY_DATA);
+                    //Iterate through the response and populate movies list
+                    for (int i = 0; i < movies.length(); i++) {
+                        JSONObject movie = movies.getJSONObject(i);
+                        Integer movieId = movie.getInt(KEY_MOVIE_ID);
+                        String movieName = movie.getString(KEY_MOVIE_NAME);
+                        String movieImage = movie.getString(KEY_MOVIE_IMAGE);
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        map.put(KEY_MOVIE_ID, movieId.toString());
+                        map.put(KEY_MOVIE_NAME, movieName);
+                        map.put(KEY_MOVIE_IMAGE, movieImage);
+                        movieList.add(map);
+                    }
+
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(String result) {
+            pDialog.dismiss();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    populateMovieList();
+                }
+            });
+        }
+
+    }
+
+    private class SearchItemActivity extends AsyncTask<String, String, String> {
+
+        private String searchKey = null;
+
+        public SearchItemActivity(String SearchKey){
+
+            this.searchKey = SearchKey;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //Display progress bar
+            pDialog = new ProgressDialog(MovieListingActivity.this);
+            pDialog.setMessage("Loading movies. Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            HttpJsonParser httpJsonParser = new HttpJsonParser();
+            Map<String, String> httpParams = new HashMap<String, String>();
+            httpParams.put("SearchKey", this.searchKey);
+            JSONObject jsonObject = httpJsonParser.makeHttpRequest(
+                    BASE_URL + "search_all_movies.php", "POST", httpParams);
             try {
                 int success = jsonObject.getInt(KEY_SUCCESS);
                 JSONArray movies;
@@ -159,5 +246,7 @@ public class MovieListingActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
 
 }
