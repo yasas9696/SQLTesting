@@ -33,7 +33,7 @@ import java.util.Map;
 public class MovieListingActivity extends AppCompatActivity {
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
-    private static final String KEY_MOVIE_ID = "item_id";
+    private static final String KEY_MOVIE_ID = "id";
     private static final String KEY_MOVIE_NAME = "item_name";
     private static final String KEY_MOVIE_IMAGE = "item_image";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";

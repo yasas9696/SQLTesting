@@ -32,10 +32,10 @@ public class HistoryUpdateActivity extends AppCompatActivity {
     private static String STRING_EMPTY = "";
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
-    private static final String KEY_HISTORY_ID = "historyID";
+    private static final String KEY_HISTORY_ID = "id";
     private static final String KEY_DATE = "date";
     private static final String KEY_EVENT_NAME = "event";
-    private static final String KEY_MOVIE_ID = "item_id";
+    private static final String KEY_MOVIE_ID = "id";
     private static final String KEY_MOVIE_NAME = "item_name";
     private static final String KEY_JOB_NUMBER = "jobNumber";
     private static final String KEY_DEPARTMENT = "department";
@@ -171,7 +171,7 @@ public class HistoryUpdateActivity extends AppCompatActivity {
 
                         JSONObject item = currentItems.getJSONObject(i);
 
-                        Integer itemID = item.getInt("item_id");
+                        Integer itemID = item.getInt("id");
                         String itemName = item.getString("item_name");
 
                         HashMap<String, String> map1 = new HashMap<String, String>();

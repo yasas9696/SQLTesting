@@ -40,7 +40,7 @@ public class MovieUpdateDeleteActivity extends AppCompatActivity {
     private static String STRING_EMPTY = "";
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
-    private static final String KEY_MOVIE_ID = "item_id";
+    private static final String KEY_MOVIE_ID = "id";
     private static final String KEY_ITEM_TYPE = "item_type";
     private static final String KEY_MOVIE_NAME = "item_name";
     private static final String KEY_MODEL = "item_model";

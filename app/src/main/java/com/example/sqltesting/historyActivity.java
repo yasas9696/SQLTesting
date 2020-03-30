@@ -27,7 +27,7 @@ import java.util.HashMap;
 public class historyActivity extends AppCompatActivity {
     private static final String KEY_SUCCESS = "success";
     private static final String KEY_DATA = "data";
-    private static final String KEY_MOVIE_ID = "historyID";
+    private static final String KEY_MOVIE_ID = "id";
     private static final String KEY_MOVIE_NAME = "event";
     private static final String BASE_URL = "http://www.candyfactorylk.com/blog/movies/";
     private ArrayList<HashMap<String, String>> historyList;
